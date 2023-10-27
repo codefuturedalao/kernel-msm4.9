@@ -1,0 +1,33 @@
+bpf {
+    name: "bpf_test.o",
+    srcs: ["bpf_test.c"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
+
+cc_binary {
+    name: "bpf_cli",
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wthread-safety",
+    ],
+    clang: true,
+    shared_libs: [
+        "libcutils",
+        "libbpf_android",
+        "libbase",
+        "liblog",
+        "libnetdutils",
+        "libbpf_bcc",
+    ],
+    static_libs: [
+        "libbpf",
+    ],
+    srcs: [
+        "bpf_cli.cpp",
+    ],
+}
